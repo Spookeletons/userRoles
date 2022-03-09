@@ -2,7 +2,6 @@ const passport = require('passport');
 const {Strategy} = require('passport-local').Strategy;
 const {User, Role, Permission} = require('../models');
 const md5 = require('md5');
-
 //test the user's credentials
 async function verifyUser(username, password, done){
     //fetch user from database

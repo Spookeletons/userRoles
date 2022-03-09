@@ -10,20 +10,31 @@ html
 
         h3 User Permissions
         ul.nav.justify-content-end.main-nav
-          li.nav-item
-            a.nav-link(href="/") Dashboard
-          li.nav-item
-            a.nav-link(href="/accounting") Accounting
-          li.nav-item
-            a.nav-link(href="/marketing") Marketing
-          li.nav-item
-            a.nav-link(href="/sales") Sales
-          li.nav-item
-            a.nav-link(href="/hr") HR
-          li.nav-item
-            a.nav-link(href="/login") Login
-          li.nav-item
-            a.nav-link(href="/register") Register
+          if user
+            if user.can('view dashboard')
+              li.nav-item
+                a.nav-link(href="/") Dashboard
+            if user.can('view accounting')
+              li.nav-item
+                a.nav-link(href="/accounting") Accounting
+            if user.can('view marketing')
+              li.nav-item
+                a.nav-link(href="/marketing") Marketing
+            if user.can('view sales')
+              li.nav-item
+                a.nav-link(href="/sales") Sales
+            if user.can('view hr')
+              li.nav-item
+                a.nav-link(href="/hr") HR
+            li.nav-item
+              a.nav-link(href="/profile") Hello #{user.first_name}
+            li.nav-item
+              a.nav-link(href="/logout") Logout
+          else
+            li.nav-item
+              a.nav-link(href="/login") Login
+            li.nav-item
+              a.nav-link(href="/register") Register
 
     div.container
       block content

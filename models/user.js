@@ -16,6 +16,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'role_id'
       })
     }
+    can(action){
+      let match = this.role.permissions.find(function(permission){
+        return permission.name === action
+      });
+
+      if(match) return true;
+      return false;
+    }
   };
   User.init({
     email: DataTypes.STRING,
